@@ -1,0 +1,6 @@
+- name: Install venvs on localhost
+  hosts: localhost
+
+  roles:
+    - role: setup_venvs
+      when: ansible_system == "Linux"

@@ -1,0 +1,15 @@
+---
+
+- block : # Install venv with dependencies
+    - name: Install virtualenv
+      command: |
+        python3 -m venv "{{ item | splitext | first }}"
+      with_fileglob: "*.txt"
+
+    - name: Install dependencies
+      pip:
+        requirements: "{{ item }}"
+        virtualenv: "{{ item | splitext | first }}"
+      with_fileglob: "*.txt"
+
+  when: ansible_os_family == "Debian"
