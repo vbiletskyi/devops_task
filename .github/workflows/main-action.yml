@@ -19,3 +19,9 @@ jobs:
           #   ${{ secrets.ANSIBLE_HOST }} ansible_user=${{ secrets.ANSIBLE_USER }}
           options: |
             --verbose
+            
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
